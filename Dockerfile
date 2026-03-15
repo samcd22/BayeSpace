@@ -25,6 +25,9 @@ RUN curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.s
     bash Miniconda3-latest-Linux-x86_64.sh -b -p /build/miniconda3 && \
     rm -f Miniconda3-latest-Linux-x86_64.sh
 
+RUN /build/miniconda3/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+RUN /build/miniconda3/bin/conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
 # Create the Conda environment
 RUN /build/miniconda3/bin/conda create -y -n myenv python=3.10
 
@@ -56,3 +59,4 @@ RUN mkdir /BayeSpace/data /BayeSpace/results
 
 # Default command
 CMD ["bash"]
+
